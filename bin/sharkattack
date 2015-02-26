@@ -1,0 +1,28 @@
+#!/usr/bin/env python
+
+import argparse
+import curses
+import os
+import random
+
+DEFAULT_DATA_DIR = '/var/lib/sharkattack'
+DEFAULT_MODE = 'plain'
+SHARK_DIR = 'sharks'
+MODES = ('plain', 'color', 'curses')
+
+def main():
+    parser = argparse.ArgumentParser(description='Live dangerously.')
+    parser.add_argument('--data', dest='data_dir', type=str, default=DEFAULT_DATA_DIR)
+    parser.add_argument('--mode', dest='mode', type=str, choices=MODES, default=DEFAULT_MODE)
+
+    args = parser.parse_args()
+
+    shark_dir = os.path.join(args.data_dir, SHARK_DIR)
+    shark_filename = random.choice([f for f in os.listdir(shark_dir) if os.path.isfile(os.path.join(shark_dir, f))])
+    with open(os.path.join(shark_dir, shark_filename), 'r') as shark_file:
+        for line in filter(lambda line: not line.startswith('#'), shark_file.readlines()):
+            print line.rstrip()
+
+if __name__ == '__main__':
+    main()
+
