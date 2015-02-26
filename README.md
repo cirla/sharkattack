@@ -1,5 +1,5 @@
 # Shark Attack
-_Live Dangerously_
+#### _Live Dangerously_
 
 Tired of running boring commands? Spice up your day with the added danger of a potential shark attack.
 
@@ -14,7 +14,7 @@ TODO:
 * galeophobia of some degree
 
 ### 2.2 sharkattack
-TODO: `make install`
+**TODO:** `make install`
 
 1. Put [sharkattack](https://raw.githubusercontent.com/cirla/sharkattack/master/bin/sharkattack) somewhere in your
    `$PATH`.
@@ -25,15 +25,15 @@ TODO: `make install`
 
 ```bash
 . /path/to/sharkattack.sh
-shark_alias ls 'ls -GFh' 2
+shark_alias ls 'ls -GFh' 2 # 2% chance of sharkattack
 shark_alias ll 'ls -GFhAlp' 2
-shark_alias cointoss "echo 'SAFE.'" 50
+shark_alias cointoss "echo 'SAFE.'" 50 # 50% chance of sharkattack
 ```
 
 ## 3. Configuration
 You can override the following env variables:
-* `SHARK_ATTACK_DATA`: Where the important data (`sharks` folder) lives. *Default:* `/var/lib/sharkattack`
-* `SHARK_ATTACK_MODE`: How realistic do you want your sharks? (`plain`, `color`, or `curses`) *Default:* `curses`
+* `SHARK_ATTACK_DATA`: Where the important data (`sharks` folder) lives. **Default:** `/var/lib/sharkattack`
+* `SHARK_ATTACK_MODE`: How realistic do you want your sharks? (`plain`, `color`, or `curses`) **Default:** `curses`
 
 ## 4. License
 This software is distributed under the [MIT License](https://raw.githubusercontent.com/cirla/sharkattack/master/LICENSE).
