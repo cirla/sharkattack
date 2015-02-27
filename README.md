@@ -5,6 +5,8 @@ Tired of running boring commands? Spice up your day with the added danger of a p
 
 ## 1. Demo
 
+`plain` mode
+
 ![Demo](https://raw.githubusercontent.com/cirla/sharkattack/master/demo.gif)
 
 ## 2. Installation
