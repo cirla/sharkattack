@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# sharkattack by Tim Cheeseman
+# Live Dangerously.
 
 import argparse
 import curses
@@ -11,7 +13,6 @@ DEFAULT_DATA_DIR = '/var/lib/sharkattack'
 DEFAULT_MODE = 'plain'
 SHARK_DIR = 'sharks'
 MODES = ('plain', 'color', 'curses')
-
 
 def main():
     parser = argparse.ArgumentParser(description='Live dangerously.')
@@ -34,7 +35,7 @@ def main():
 
 def do_plain(lines):
     for line in lines:
-        print line.rstrip()
+        print line
 
 BG_BLUE       = "\033[44m"
 FG_LIGHT_GRAY = "\033[37m"
@@ -60,11 +61,10 @@ def do_curses(lines):
 
     try:
         curses_loop(win, lines, num_lines, max_len)
-    except Exception as e:
+    except (Exception, KeyboardInterrupt, SystemExit):
+        # try to leave the terminal in a useable state if something goes wrong
         curses_deinit(win)
-        import traceback
-        print >> sys.stderr, traceback.print_exc()
-        return
+        raise
 
     curses_deinit(win)
 
@@ -101,8 +101,8 @@ def curses_loop(win, lines, num_lines, max_len):
         (max_y, max_x) = win.getmaxyx()
         x_range = max(0, (max_x - max_len - 1) / 2)
         y_range = max(0, (max_y - num_lines - 1) / 2)
-        x_offset = random.randint(-x_range, x_range) if x_range else 0
-        y_offset = random.randint(-y_range, y_range) if y_range else 0
+        x_offset = random.randint(-x_range, x_range)
+        y_offset = random.randint(-y_range, y_range)
 
         win.clear()
         win.addstr(0, max_x / 2 - len(title) / 2, title)
