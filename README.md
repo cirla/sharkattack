@@ -11,7 +11,7 @@ Tired of running boring commands? Spice up your day with the added danger of a p
 
 `color` mode
 
-![Color Mode Demo](https://raw.githubusercontent.com/cirla/sharkattack/master/demo/color.png)
+<img src="https://raw.githubusercontent.com/cirla/sharkattack/master/demo/color.png" alt="Color Mode Demo" width="300px">
 
 `curses` mode
 
