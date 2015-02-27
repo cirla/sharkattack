@@ -7,7 +7,15 @@ Tired of running boring commands? Spice up your day with the added danger of a p
 
 `plain` mode
 
-![Demo](https://raw.githubusercontent.com/cirla/sharkattack/master/demo.gif)
+![Plain Mode Demo](https://raw.githubusercontent.com/cirla/sharkattack/master/demo/plain.gif)
+
+`color` mode
+
+![Color Mode Demo](https://raw.githubusercontent.com/cirla/sharkattack/master/demo/color.png)
+
+`curses` mode
+
+![Curses Mode Demo](https://raw.githubusercontent.com/cirla/sharkattack/master/demo/curses.gif)
 
 ## 2. Installation
 ### 2.1 Prerequisites
