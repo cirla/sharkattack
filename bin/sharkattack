@@ -10,6 +10,7 @@ DEFAULT_MODE = 'plain'
 SHARK_DIR = 'sharks'
 MODES = ('plain', 'color', 'curses')
 
+
 def main():
     parser = argparse.ArgumentParser(description='Live dangerously.')
     parser.add_argument('--data', dest='data_dir', type=str, default=DEFAULT_DATA_DIR)
@@ -20,8 +21,37 @@ def main():
     shark_dir = os.path.join(args.data_dir, SHARK_DIR)
     shark_filename = random.choice([f for f in os.listdir(shark_dir) if os.path.isfile(os.path.join(shark_dir, f))])
     with open(os.path.join(shark_dir, shark_filename), 'r') as shark_file:
-        for line in filter(lambda line: not line.startswith('#'), shark_file.readlines()):
-            print line.rstrip()
+        shark_lines = [line.rstrip() for line in shark_file if not line.startswith("#")]
+
+    if args.mode == 'plain':
+        do_plain(shark_lines)
+    elif args.mode == 'color':
+        do_color(shark_lines)
+    elif args.mode == 'curses':
+        do_curses(shark_lines)
+
+def do_plain(lines):
+    for line in lines:
+        print line.rstrip()
+
+BG_BLUE       = "\033[44m"
+FG_LIGHT_GRAY = "\033[37m"
+RESET_COLORS  = "\033[0m"
+
+def do_color(lines):
+    max_len = max(map(len, lines))
+
+    lines.insert(0, "")
+    lines.append("")
+    for line in lines:
+        print "{bg}{fg} {body:<{max_len}} {}".format(RESET_COLORS,
+                                                     bg=BG_BLUE,
+                                                     fg=FG_LIGHT_GRAY,
+                                                     body=line,
+                                                     max_len=max_len)
+
+def do_curses(lines):
+    do_color(lines) # TODO
 
 if __name__ == '__main__':
     main()
