@@ -1,0 +1,4 @@
+timezone: America/New_York
+sass:
+    style: :compressed
+
