@@ -41,5 +41,7 @@ You can override the following env variables:
 * `SHARK_ATTACK_DATA`: Where the important data (`sharks` folder) lives. **Default:** `/var/lib/sharkattack`
 * `SHARK_ATTACK_MODE`: How realistic do you want your sharks? (`plain`, `color`, or `curses`) **Default:** `curses`
 
+If you want to live **really** dangerously, why not combine Shark Attack with a healthy sprinkling of `shopt -s expand_aliases` in your production scripts? (*Warning:* this will almost certainly get you fired. [Hooray!](http://www.yellow5.com/pokey/archive/index86.html))
+
 ## 4. License
 This software is distributed under the [MIT License](https://raw.githubusercontent.com/cirla/sharkattack/master/LICENSE).
