@@ -34,7 +34,7 @@ function shark_swim {
     danger=$(( (RANDOM % 100) + 1 ))
     if [ "$danger" -gt "$danger_threshold" ]
     then
-        $command
+        $command ${*:3}
     else
         sharkattack --mode "$SHARK_ATTACK_MODE" --data "$SHARK_ATTACK_DATA"
     fi
