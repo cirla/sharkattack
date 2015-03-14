@@ -12,7 +12,7 @@ SHARK_ATTACK_MODE='curses'
 #
 # @param alias              the name of the alias to create
 # @param command            the command you want to alias
-# @param danger_threshold   your tolerance for danger (1-100)
+# @param threshold   your tolerance for danger (1-100)
 #
 function shark_alias {
     alias=$1
