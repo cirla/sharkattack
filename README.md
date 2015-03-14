@@ -19,7 +19,7 @@ Terrifyingly realistic `curses` mode for the true thrillseeker.
 
 ## 2. Installation
 ### 2.1 Prerequisites
-* [Python](https://www.python.org/) 2.7
+* [Python](https://www.python.org/) 2
 * Galeophobia of some degree
 
 ### 2.2 sharkattack
