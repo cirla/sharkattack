@@ -11,17 +11,26 @@ import sys
 
 DEFAULT_DATA_DIR = '/var/lib/sharkattack'
 DEFAULT_MODE = 'plain'
+DEFAULT_TYPE = 'shark'
 SHARK_DIR = 'sharks'
+CAT_DIR = 'cats'
 MODES = ('plain', 'color', 'curses')
+TYPES = ('shark', 'cat')
 
 def main():
     parser = argparse.ArgumentParser(description='Live dangerously.')
     parser.add_argument('--data', dest='data_dir', type=str, default=DEFAULT_DATA_DIR)
     parser.add_argument('--mode', dest='mode', type=str, choices=MODES, default=DEFAULT_MODE)
+    parser.add_argument('--type', dest='type', type=str, choices=TYPES, default=DEFAULT_TYPE)
 
     args = parser.parse_args()
 
     shark_dir = os.path.join(args.data_dir, SHARK_DIR)
+
+    # CAT HACK
+    if args.type == 'cat':
+        shark_dir = os.path.join(args.data_dir, CAT_DIR)
+
     shark_filename = random.choice([f for f in os.listdir(shark_dir) if os.path.isfile(os.path.join(shark_dir, f))])
     with open(os.path.join(shark_dir, shark_filename), 'r') as shark_file:
         shark_lines = [line.rstrip() for line in shark_file if not line.startswith("#")]

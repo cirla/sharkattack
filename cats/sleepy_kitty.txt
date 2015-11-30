@@ -1,0 +1,6 @@
+# source: http://www.ascii-art.de/ascii/c/cat.txt
+# credits: fL
+  |\      _,,,---,,_
+  /,`.-'`'    -.  ;-;;,_
+ |,4-  ) )-,_..;\ (  `'-'
+'---''(_/--'  `-'\_)
