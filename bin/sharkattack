@@ -40,7 +40,7 @@ def main():
     elif args.mode == 'color':
         do_color(shark_lines)
     elif args.mode == 'curses':
-        do_curses(shark_lines)
+        do_curses(shark_lines, args.type)
 
 def do_plain(lines):
     for line in lines:
@@ -62,14 +62,14 @@ def do_color(lines):
                                                      body=line,
                                                      max_len=max_len)
 
-def do_curses(lines):
+def do_curses(lines, type):
     num_lines = len(lines)
     max_len = max(map(len, lines))
 
     win = curses_init()
 
     try:
-        curses_loop(win, lines, num_lines, max_len)
+        curses_loop(win, lines, num_lines, max_len, type)
     except (Exception, KeyboardInterrupt, SystemExit):
         # try to leave the terminal in a useable state if something goes wrong
         curses_deinit(win)
@@ -92,10 +92,14 @@ def curses_init():
 
     return win
 
-def curses_loop(win, lines, num_lines, max_len):
+def curses_loop(win, lines, num_lines, max_len, type):
     draw_interval = datetime.timedelta(seconds=1)
     last_draw = datetime.datetime.now() - draw_interval
     title = "Press Q or Esc to swim to safety"
+
+    # CAT HACK
+    if type == 'cat':
+        title = "Press Q or Esc to claw to safety"
 
     while True:
         c = win.getch()
