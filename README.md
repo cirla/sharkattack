@@ -43,5 +43,10 @@ You can override the following env variables:
 
 If you want to live **really** dangerously, why not combine Shark Attack with a healthy sprinkling of `shopt -s expand_aliases` in your production scripts? (*Warning:* this will almost certainly get you fired. [Hooray!](http://www.yellow5.com/pokey/archive/index86.html))
 
-## 4. License
+## 4. Cat Mode
+Terrified of sharks? Obsessed with cats? Live luxuriously with sharkattack: Cat Mode!
+* Follow the same configuration steps as above, but copy the very important `cats` folder into your data destination.
+* Use `cat_alias` instead of boring old `shark_alias` to add a little cat action to your life.
+
+## 5. License
 This software is distributed under the [MIT License](https://raw.githubusercontent.com/cirla/sharkattack/master/LICENSE).

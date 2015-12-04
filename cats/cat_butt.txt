@@ -1,0 +1,16 @@
+# source: http://www.ascii-art.de/ascii/c/cat.txt
+# credits: Skorch
+   /\
+   \ \
+    \ \
+    / /
+   / /
+  _\ \_/\/\
+ /  *  \@@ =
+|       |Y/
+|       |~
+ \ /_\ /
+  \\ //
+   |||
+  _|||_
+ ( / \ )

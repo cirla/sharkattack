@@ -11,17 +11,26 @@ import sys
 
 DEFAULT_DATA_DIR = '/var/lib/sharkattack'
 DEFAULT_MODE = 'plain'
+DEFAULT_TYPE = 'shark'
 SHARK_DIR = 'sharks'
+CAT_DIR = 'cats'
 MODES = ('plain', 'color', 'curses')
+TYPES = ('shark', 'cat')
 
 def main():
     parser = argparse.ArgumentParser(description='Live dangerously.')
     parser.add_argument('--data', dest='data_dir', type=str, default=DEFAULT_DATA_DIR)
     parser.add_argument('--mode', dest='mode', type=str, choices=MODES, default=DEFAULT_MODE)
+    parser.add_argument('--type', dest='type', type=str, choices=TYPES, default=DEFAULT_TYPE)
 
     args = parser.parse_args()
 
     shark_dir = os.path.join(args.data_dir, SHARK_DIR)
+
+    # CAT HACK
+    if args.type == 'cat':
+        shark_dir = os.path.join(args.data_dir, CAT_DIR)
+
     shark_filename = random.choice([f for f in os.listdir(shark_dir) if os.path.isfile(os.path.join(shark_dir, f))])
     with open(os.path.join(shark_dir, shark_filename), 'r') as shark_file:
         shark_lines = [line.rstrip() for line in shark_file if not line.startswith("#")]
@@ -31,7 +40,7 @@ def main():
     elif args.mode == 'color':
         do_color(shark_lines)
     elif args.mode == 'curses':
-        do_curses(shark_lines)
+        do_curses(shark_lines, args.type)
 
 def do_plain(lines):
     for line in lines:
@@ -53,14 +62,14 @@ def do_color(lines):
                                                      body=line,
                                                      max_len=max_len)
 
-def do_curses(lines):
+def do_curses(lines, type):
     num_lines = len(lines)
     max_len = max(map(len, lines))
 
     win = curses_init()
 
     try:
-        curses_loop(win, lines, num_lines, max_len)
+        curses_loop(win, lines, num_lines, max_len, type)
     except (Exception, KeyboardInterrupt, SystemExit):
         # try to leave the terminal in a useable state if something goes wrong
         curses_deinit(win)
@@ -83,10 +92,14 @@ def curses_init():
 
     return win
 
-def curses_loop(win, lines, num_lines, max_len):
+def curses_loop(win, lines, num_lines, max_len, type):
     draw_interval = datetime.timedelta(seconds=1)
     last_draw = datetime.datetime.now() - draw_interval
     title = "Press Q or Esc to swim to safety"
+
+    # CAT HACK
+    if type == 'cat':
+        title = "Press Q or Esc to claw to safety"
 
     while True:
         c = win.getch()
